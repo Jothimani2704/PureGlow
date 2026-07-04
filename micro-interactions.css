@@ -1,0 +1,345 @@
+/* ==========================================================================
+   Micro-Interactions — Self-Contained Module
+   Namespace: .mi-* (micro-interaction)
+   Does NOT modify any existing classes or styles.
+   ========================================================================== */
+
+/* ── Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+    .mi-magnetic,
+    .mi-ripple-host,
+    .mi-tilt,
+    .mi-bloom img,
+    .mi-price-flip .mi-price-inner,
+    .mi-nav-underline::after,
+    .mi-particle {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   1. MAGNETIC BUTTON
+   CTA buttons subtly follow the cursor within ~12px radius
+   ───────────────────────────────────────────────────────── */
+.mi-magnetic {
+    transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+.mi-magnetic:hover {
+    /* JS applies inline transform — this just ensures smooth transition */
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   2. RIPPLE CLICK EFFECT
+   Expanding circle from click point
+   ───────────────────────────────────────────────────────── */
+.mi-ripple-host {
+    position: relative;
+    overflow: hidden;
+}
+
+.mi-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: scale(0);
+    animation: mi-ripple-expand 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Variant for light-bg buttons */
+.mi-ripple-dark {
+    background: radial-gradient(circle, rgba(78, 101, 81, 0.18) 0%, rgba(78, 101, 81, 0) 70%);
+}
+
+@keyframes mi-ripple-expand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   3. CARD TILT (3D Perspective)
+   Product cards tilt on hover with a glossy reflection
+   ───────────────────────────────────────────────────────── */
+.mi-tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.mi-tilt:hover {
+    /* Transform applied via JS */
+    box-shadow: 0 20px 50px rgba(42, 38, 36, 0.12),
+                0 8px 20px rgba(78, 101, 81, 0.08);
+}
+
+/* Glossy light reflection overlay */
+.mi-tilt-gloss {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at var(--mi-gloss-x, 50%) var(--mi-gloss-y, 50%),
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mi-tilt:hover .mi-tilt-gloss {
+    opacity: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   4. IMAGE COLOR BLOOM
+   Images start desaturated, color blooms on hover
+   ───────────────────────────────────────────────────────── */
+.mi-bloom {
+    overflow: hidden;
+}
+
+.mi-bloom img {
+    filter: saturate(0.35) brightness(1.02);
+    transition: filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: filter, transform;
+}
+
+.mi-bloom:hover img {
+    filter: saturate(1.05) brightness(1);
+    transform: scale(1.04);
+}
+
+/* Bloom radial mask — grows from center */
+.mi-bloom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mi-bloom:hover::after {
+    width: 140%;
+    height: 140%;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   5. PRICE TAG FLIP
+   Price does a 3D Y-axis flip on hover
+   ───────────────────────────────────────────────────────── */
+.mi-price-flip {
+    perspective: 400px;
+    display: inline-flex;
+    cursor: default;
+}
+
+.mi-price-inner {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+}
+
+.mi-price-flip:hover .mi-price-inner {
+    transform: rotateY(360deg);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   6. ADD-TO-CART PARTICLE BURST
+   Botanical particles explode from button on click
+   ───────────────────────────────────────────────────────── */
+.mi-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 14px;
+    line-height: 1;
+    will-change: transform, opacity;
+    animation: mi-particle-fly var(--mi-dur, 0.8s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes mi-particle-fly {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    60% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--mi-tx, 50px), var(--mi-ty, -80px)) scale(0.3) rotate(var(--mi-rot, 180deg));
+    }
+}
+
+/* Flying soap icon to cart badge */
+.mi-fly-to-cart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    font-size: 18px;
+    will-change: transform, opacity;
+    animation: mi-fly-arc 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes mi-fly-arc {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translate(var(--mi-fly-mx, -40px), var(--mi-fly-my, -120px)) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--mi-fly-ex, -80px), var(--mi-fly-ey, -200px)) scale(0.3);
+    }
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   7. NAV LINK UNDERLINE GROW
+   Underline grows from center on hover
+   ───────────────────────────────────────────────────────── */
+.mi-nav-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.mi-nav-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary-sage), var(--color-terracotta));
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mi-nav-underline:hover::after,
+.mi-nav-underline.active::after {
+    width: 100%;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   8. BUTTON HOVER GLOW EFFECT
+   Subtle glow behind buttons on hover
+   ───────────────────────────────────────────────────────── */
+.mi-btn-glow {
+    position: relative;
+    z-index: 1;
+}
+
+.mi-btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+        rgba(78, 101, 81, 0.35),
+        rgba(184, 124, 92, 0.35),
+        rgba(197, 168, 128, 0.35)
+    );
+    z-index: -1;
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.mi-btn-glow:hover::before {
+    opacity: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   9. ICON SPIN ON HOVER
+   Feature icons rotate gently on card hover
+   ───────────────────────────────────────────────────────── */
+.mi-icon-spin {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mi-icon-spin-trigger:hover .mi-icon-spin {
+    transform: rotate(15deg) scale(1.1);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   10. CARD HOVER LIFT (enhanced shadow + translate)
+   ───────────────────────────────────────────────────────── */
+.mi-hover-lift {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mi-hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(42, 38, 36, 0.1),
+                0 4px 12px rgba(78, 101, 81, 0.06);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   11. BADGE PULSE
+   Product badges pulse subtly
+   ───────────────────────────────────────────────────────── */
+.mi-badge-pulse {
+    animation: mi-pulse-ring 2.5s ease-in-out infinite;
+}
+
+@keyframes mi-pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(184, 124, 92, 0.3); }
+    50% { box-shadow: 0 0 0 6px rgba(184, 124, 92, 0); }
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   12. FOCUS RING — Enhanced accessibility focus effect
+   ───────────────────────────────────────────────────────── */
+.mi-focus-ring:focus-visible {
+    outline: 2px solid var(--color-primary-sage);
+    outline-offset: 3px;
+    border-radius: 4px;
+    transition: outline-offset 0.15s ease;
+}
+
+.mi-focus-ring:focus-visible:active {
+    outline-offset: 1px;
+}

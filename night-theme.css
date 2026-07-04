@@ -1,0 +1,589 @@
+/* ==========================================================================
+   Spa-Theme Night Mode (Dark Skincare Ritual Theme) — Standalone CSS Module
+   Namespace: .nt-* (night-theme)
+   Applies custom variables and overrides when body has the .nt-active class.
+   ========================================================================== */
+
+:root {
+    /* Night Theme Colors */
+    --nt-charcoal-dark: #121413;     /* Deep midnight oil */
+    --nt-charcoal-medium: #1C1E1D;   /* Dark spa stone */
+    --nt-charcoal-light: #262A28;    /* Muted obsidian */
+    --nt-candle-gold: #E5C158;       /* Warm candle flame */
+    --nt-candle-amber: #D88B58;      /* Deep terracotta glow */
+    --nt-sage-dim: #6E8273;          /* Shadowed forest sage */
+    --nt-text-light: #F0EDE8;        /* Soft sand white */
+    --nt-text-muted: #A59F95;        /* Foggy grey */
+    --nt-glow-color: rgba(229, 193, 88, 0.12);
+}
+
+/* ==========================================================================
+   1. Theme Toggle Controller Button Style
+   ========================================================================== */
+.nt-toggle-btn {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--sage);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 99990;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    outline: none;
+}
+
+.nt-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    background-color: var(--terracotta);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Icon animations inside the toggle button */
+.nt-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.5s ease;
+}
+
+/* ==========================================================================
+   2. Active Night Theme CSS Overrides
+   ========================================================================== */
+body.nt-active {
+    background-color: var(--nt-charcoal-dark) !important;
+    color: var(--nt-text-light) !important;
+}
+
+/* Main layouts backgrounds overrides */
+body.nt-active .pt-perspective-container,
+body.nt-active main,
+body.nt-active section,
+body.nt-active footer {
+    background-color: var(--nt-charcoal-dark) !important;
+    color: var(--nt-text-light) !important;
+}
+
+/* Hero Section override with soft candle-lit gradient backdrop */
+body.nt-active .hero-section {
+    background: linear-gradient(135deg, #181B1A 0%, var(--nt-charcoal-dark) 100%) !important;
+}
+
+body.nt-active .hero-section::before {
+    background: linear-gradient(135deg, rgba(110, 130, 115, 0.06) 0%, rgba(216, 139, 88, 0.06) 100%) !important;
+}
+
+/* Text overrides */
+body.nt-active h1, 
+body.nt-active h2, 
+body.nt-active h3, 
+body.nt-active h4, 
+body.nt-active h5, 
+body.nt-active h6,
+body.nt-active .section-title,
+body.nt-active .hero-title,
+body.nt-active .section-subtitle,
+body.nt-active .card-title,
+body.nt-active .why-title {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active p,
+body.nt-active .hero-subtitle,
+body.nt-active .care-card-desc,
+body.nt-active .why-desc,
+body.nt-active .about-desc,
+body.nt-active .footer-text {
+    color: var(--nt-text-muted) !important;
+}
+
+/* Navigation Header Styles */
+body.nt-active header.main-header {
+    background-color: rgba(18, 20, 19, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+}
+
+body.nt-active .nav-item {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .nav-item.active,
+body.nt-active .nav-item:hover {
+    color: var(--nt-candle-gold) !important;
+}
+
+/* Mobile Hamburger Menu */
+body.nt-active .hamburger .bar {
+    background-color: var(--nt-text-light) !important;
+}
+
+/* Card Backgrounds Overrides (Products, Testimonials, FAQ, Why Choose Us) */
+body.nt-active .product-card,
+body.nt-active .testimonial-card,
+body.nt-active .why-card,
+body.nt-active .faq-item,
+body.nt-active .care-step-card,
+body.nt-active .ritual-step-card,
+body.nt-active .pt-skeleton-card,
+body.nt-active .skincare-assistant-box,
+body.nt-active .form-card,
+body.nt-active .care-card {
+    background-color: var(--nt-charcoal-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Input boxes & Form fields */
+body.nt-active input,
+body.nt-active textarea,
+body.nt-active select {
+    background-color: var(--nt-charcoal-light) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--nt-text-light) !important;
+}
+
+/* FAQ item specific fixes */
+body.nt-active .faq-question {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .faq-answer {
+    color: var(--nt-text-muted) !important;
+    background-color: var(--nt-charcoal-dark) !important;
+}
+
+/* Buttons and accents */
+body.nt-active .btn-primary {
+    background-color: var(--nt-candle-amber) !important;
+    border-color: var(--nt-candle-amber) !important;
+    color: var(--nt-charcoal-dark) !important;
+    font-weight: 600 !important;
+}
+
+body.nt-active .btn-primary:hover {
+    background-color: var(--nt-candle-gold) !important;
+    border-color: var(--nt-candle-gold) !important;
+    box-shadow: 0 0 15px rgba(229, 193, 88, 0.3) !important;
+}
+
+body.nt-active .btn-secondary {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Dynamic glow highlights on bestselling products in night mode */
+body.nt-active .product-card.aa-featured-glow {
+    animation: aaFeaturedCardNightGlow 4s ease-in-out infinite !important;
+}
+
+@keyframes aaFeaturedCardNightGlow {
+    0% {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 0 0 var(--nt-glow-color);
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 25px 8px rgba(216, 139, 88, 0.25);
+        transform: translateY(-2px);
+    }
+    100% {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 0 0 var(--nt-glow-color);
+    }
+}
+
+/* Skincare bag / Cart Drawer Overrides */
+body.nt-active #cart-drawer {
+    background: linear-gradient(180deg, #181A19 0%, var(--nt-charcoal-dark) 100%) !important;
+    color: var(--nt-text-light) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .cart-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+body.nt-active .cart-item-title {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .cart-drawer-header {
+    background-color: var(--nt-charcoal-medium) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .cart-checkout-bar {
+    background-color: var(--nt-charcoal-medium) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.nt-active .cart-drawer-close {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    color: var(--nt-text-light) !important;
+}
+
+
+/* Modals overlays overrides */
+body.nt-active .modal-overlay {
+    background-color: rgba(18, 20, 19, 0.8) !important;
+}
+
+body.nt-active .modal-container {
+    background-color: var(--nt-charcoal-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body.nt-active .modal-close,
+body.nt-active .close-cart-btn {
+    color: var(--nt-text-light) !important;
+}
+
+/* Highlight variables updates */
+/* Highlight variables updates */
+body.nt-active span.highlight,
+body.nt-active .text-serif.text-italic {
+    color: var(--nt-candle-gold) !important;
+}
+
+/* Outer Cursor Follower in Night Mode */
+body.nt-active .aa-cursor-follower {
+    background: radial-gradient(circle, var(--nt-candle-gold) 0%, rgba(216, 139, 88, 0.8) 100%) !important;
+    mix-blend-mode: screen !important;
+}
+
+body.nt-active .aa-cursor-ring {
+    border: 1px solid var(--nt-candle-gold) !important;
+}
+
+/* Bubbles catch amber candlelight glow in night mode */
+body.nt-active .aa-bubble {
+    background: radial-gradient(
+        circle at 30% 30%, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 255, 255, 0.1) 40%, 
+        rgba(229, 193, 88, 0.25) 60%, 
+        rgba(216, 139, 88, 0.15) 80%,
+        rgba(255, 255, 255, 0) 100%
+    ) !important;
+}
+
+/* ==========================================================================
+   3. Comprehensive Contrast & Visibility Fixes (Absolute Legibility)
+   ========================================================================== */
+body.nt-active label,
+body.nt-active .form-group label,
+body.nt-active .bulk-order-form label,
+body.nt-active .contact-form label {
+    color: var(--nt-text-light) !important;
+    font-weight: 500 !important;
+    opacity: 0.95 !important;
+}
+
+/* Stat Metrics readability */
+body.nt-active .stat-number,
+body.nt-active .hero-stat .number,
+body.nt-active .stat-item .value {
+    color: var(--nt-candle-gold) !important;
+    text-shadow: 0 2px 10px rgba(229, 193, 88, 0.15) !important;
+}
+
+body.nt-active .stat-label,
+body.nt-active .hero-stat .label,
+body.nt-active .stat-item .label {
+    color: var(--nt-text-muted) !important;
+}
+
+/* Section tags & badges */
+body.nt-active .section-tag,
+body.nt-active .badge-label,
+body.nt-active .badge-new,
+body.nt-active .ritual-step-number,
+body.nt-active .care-step-number {
+    color: var(--nt-candle-gold) !important;
+    background-color: rgba(229, 193, 88, 0.1) !important;
+    border: 1px solid rgba(229, 193, 88, 0.25) !important;
+}
+
+/* Skincare Assistant Box & Chat Dialogues Contrast */
+body.nt-active .skincare-assistant-box,
+body.nt-active .assistant-message,
+body.nt-active .assistant-message-content {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .assistant-chat-header,
+body.nt-active .assistant-title {
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .assistant-message.received {
+    background-color: var(--nt-charcoal-light) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .assistant-message.sent {
+    background-color: var(--nt-sage-dim) !important;
+    color: #FFFFFF !important;
+}
+
+body.nt-active .quick-tap-btn {
+    background-color: var(--nt-charcoal-light) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .quick-tap-btn:hover {
+    background-color: var(--nt-candle-amber) !important;
+    color: var(--nt-charcoal-dark) !important;
+    border-color: var(--nt-candle-amber) !important;
+}
+
+/* Testimonial Author Roles */
+body.nt-active .testimonial-author,
+body.nt-active .testimonial-name {
+    color: var(--nt-text-light) !important;
+    font-weight: 600 !important;
+}
+
+body.nt-active .testimonial-role,
+body.nt-active .testimonial-date {
+    color: var(--nt-text-muted) !important;
+}
+
+/* General Link tag items contrast */
+body.nt-active a:not(.btn):not(.nav-item) {
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active a:not(.btn):not(.nav-item):hover {
+    color: var(--nt-candle-amber) !important;
+    text-decoration: underline !important;
+}
+
+/* Footers list links readability */
+body.nt-active .footer-links a,
+body.nt-active .footer-col ul li a {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .footer-links a:hover,
+body.nt-active .footer-col ul li a:hover {
+    color: var(--nt-candle-gold) !important;
+}
+
+/* Specific visibility & contrast overrides */
+body.nt-active .form-subtitle {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active input::placeholder,
+body.nt-active textarea::placeholder {
+    color: rgba(240, 237, 232, 0.4) !important;
+}
+
+body.nt-active .bulk-list li strong {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .bulk-list li div {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .bulk-icon-check {
+    background-color: rgba(229, 193, 88, 0.15) !important;
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .modal-desc {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .modal-benefits li {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .modal-benefits li::before {
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .price-unit {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .ingredient-tag {
+    background-color: var(--nt-charcoal-light) !important;
+    color: var(--nt-text-light) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Header Brand Logo Typography Visibility Override */
+body.nt-active .logo-text {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .logo-subtext {
+    color: var(--nt-sage-dim) !important;
+}
+
+/* Product Card & Quiz Result Prices */
+body.nt-active .price-val,
+body.nt-active .modal-price,
+body.nt-active .quiz-result-price {
+    color: var(--nt-candle-gold) !important;
+}
+
+/* Artisan Soap Care Mastery Overrides */
+body.nt-active .care-card-desc {
+    color: var(--nt-text-muted) !important;
+}
+
+/* Cart Drawer Item Cards & Elements Overrides */
+body.nt-active .cart-item {
+    background-color: var(--nt-charcoal-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .cart-item-name {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .cart-item-price {
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .cart-item-qty {
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .cart-qty-controls {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.nt-active .qty-btn {
+    color: var(--nt-text-light) !important;
+    background-color: transparent !important;
+}
+
+body.nt-active .qty-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .cart-item-subtotal {
+    color: var(--nt-candle-amber) !important;
+}
+
+body.nt-active .cart-item-img-col {
+    background-color: var(--nt-charcoal-light) !important;
+}
+
+body.nt-active .cart-shipping-notice {
+    color: var(--nt-text-light) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border-left-color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .cart-total-value {
+    color: var(--nt-text-light) !important;
+}
+
+/* Handmade Soap Lifespan Calculator Overrides */
+body.nt-active .lifespan-calc-wrapper {
+    background-color: var(--nt-charcoal-medium) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.nt-active .slider-ticks,
+body.nt-active .slider-ticks span {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .calc-val-badge {
+    color: var(--nt-candle-gold) !important;
+    background-color: rgba(229, 193, 88, 0.1) !important;
+    border: 1px solid rgba(229, 193, 88, 0.25) !important;
+}
+
+body.nt-active .calc-results-column {
+    border-left-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .calc-result-ring-box {
+    background-color: var(--nt-charcoal-light) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.nt-active .calc-days-num {
+    color: var(--nt-candle-gold) !important;
+}
+
+body.nt-active .calc-days-label {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .calc-target-card span {
+    color: var(--nt-text-muted) !important;
+}
+
+body.nt-active .calc-target-date {
+    color: var(--nt-candle-amber) !important;
+}
+
+body.nt-active .calc-advice-bubble {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border-left-color: var(--nt-candle-gold) !important;
+    color: var(--nt-text-muted) !important;
+}
+
+/* Floating Skincare Assistant Overrides */
+body.nt-active .assistant-card {
+    background-color: var(--nt-charcoal-medium) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.nt-active .assistant-card-header {
+    background-color: var(--nt-charcoal-light) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .assistant-card-body {
+    background-color: var(--nt-charcoal-dark) !important;
+}
+
+body.nt-active .assistant-chat-bubble {
+    background-color: var(--nt-charcoal-light) !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+    color: var(--nt-text-light) !important;
+}
+
+body.nt-active .assistant-card-footer {
+    background-color: var(--nt-charcoal-medium) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .assistant-tooltip {
+    background-color: var(--nt-charcoal-medium) !important;
+    color: var(--nt-text-light) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.nt-active .assistant-tooltip::after {
+    border-top-color: var(--nt-charcoal-medium) !important;
+}
+
+
+
+

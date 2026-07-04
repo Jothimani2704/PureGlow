@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Scroll Animations — Self-Contained Module
+   Namespace: [data-sa] (scroll-animation)
+   Does NOT modify or override any existing .reveal classes.
+   ========================================================================== */
+
+/* ── Accessibility: respect reduced-motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+    [data-sa],
+    .sa-word,
+    .sa-line-draw,
+    .sa-counter {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    .sa-line-draw svg line,
+    .sa-line-draw svg path {
+        stroke-dashoffset: 0 !important;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   1. STAGGERED FADE-UP  (data-sa="fade-up")
+   Elements slide up from below with cascading delay
+   ───────────────────────────────────────────────────────── */
+[data-sa="fade-up"] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="fade-up"].sa-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   2. SLIDE-IN FROM SIDES  (data-sa="slide-left" / "slide-right")
+   Content enters from the left or right edge
+   ───────────────────────────────────────────────────────── */
+[data-sa="slide-left"] {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="slide-right"] {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="slide-left"].sa-visible,
+[data-sa="slide-right"].sa-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   3. SCALE-POP  (data-sa="scale-pop")
+   Cards/elements pop in with a micro-bounce
+   ───────────────────────────────────────────────────────── */
+[data-sa="scale-pop"] {
+    opacity: 0;
+    transform: scale(0.82);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="scale-pop"].sa-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   4. FADE-IN (data-sa="fade-in")
+   Simple opacity fade with no translation
+   ───────────────────────────────────────────────────────── */
+[data-sa="fade-in"] {
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity;
+}
+
+[data-sa="fade-in"].sa-visible {
+    opacity: 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   5. ZOOM-IN  (data-sa="zoom-in")
+   Scales up from a slight zoom-out
+   ───────────────────────────────────────────────────────── */
+[data-sa="zoom-in"] {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="zoom-in"].sa-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   6. FLIP-UP  (data-sa="flip-up")
+   Rotates from below into position
+   ───────────────────────────────────────────────────────── */
+[data-sa="flip-up"] {
+    opacity: 0;
+    transform: perspective(800px) rotateX(12deg) translateY(30px);
+    transform-origin: center bottom;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="flip-up"].sa-visible {
+    opacity: 1;
+    transform: perspective(800px) rotateX(0deg) translateY(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   7. WORD-BY-WORD HEADING STAGGER
+   Applied via JS: each <span class="sa-word"> gets animated
+   ───────────────────────────────────────────────────────── */
+.sa-word-wrap {
+    display: inline;
+    overflow: hidden;
+}
+
+.sa-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(105%);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.sa-heading-active .sa-word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   8. SCROLL PROGRESS BAR
+   Thin line at top of viewport showing page scroll %
+   ───────────────────────────────────────────────────────── */
+.sa-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-primary-sage), var(--color-terracotta), var(--color-gold));
+    z-index: 9999;
+    transition: width 0.05s linear;
+    border-radius: 0 2px 2px 0;
+    pointer-events: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   9. SECTION TAG ENTRANCE (data-sa="tag-slide")
+   The small "Our Philosophy" / "PureGlow Collection" tags
+   ───────────────────────────────────────────────────────── */
+[data-sa="tag-slide"] {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-sa="tag-slide"].sa-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   10. COUNTER ROLL-UP EFFECT (visual glow when counting)
+   ───────────────────────────────────────────────────────── */
+.sa-counter-active {
+    transition: color 0.3s ease;
+}
+
+.sa-counter-glow {
+    text-shadow: 0 0 18px rgba(78, 101, 81, 0.25);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   11. DRAW-ON LINE DIVIDERS (SVG stroke animation)
+   ───────────────────────────────────────────────────────── */
+.sa-line-draw svg {
+    overflow: visible;
+}
+
+.sa-line-draw svg line,
+.sa-line-draw svg path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sa-line-draw.sa-visible svg line,
+.sa-line-draw.sa-visible svg path {
+    stroke-dashoffset: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   12. STAGGER DELAY UTILITY CLASSES
+   Auto-applied by JS, but can also be used manually
+   ───────────────────────────────────────────────────────── */
+[data-sa-delay="1"] { transition-delay: 0.08s !important; }
+[data-sa-delay="2"] { transition-delay: 0.16s !important; }
+[data-sa-delay="3"] { transition-delay: 0.24s !important; }
+[data-sa-delay="4"] { transition-delay: 0.32s !important; }
+[data-sa-delay="5"] { transition-delay: 0.40s !important; }
+[data-sa-delay="6"] { transition-delay: 0.48s !important; }
+[data-sa-delay="7"] { transition-delay: 0.56s !important; }
+[data-sa-delay="8"] { transition-delay: 0.64s !important; }
+[data-sa-delay="9"] { transition-delay: 0.72s !important; }
+[data-sa-delay="10"] { transition-delay: 0.80s !important; }
+[data-sa-delay="11"] { transition-delay: 0.88s !important; }
+[data-sa-delay="12"] { transition-delay: 0.96s !important; }

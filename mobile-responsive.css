@@ -1,0 +1,264 @@
+/* ==========================================================================
+   PureGlow Soaps — Standalone Mobile Responsiveness Fixes & Enhancements
+   Forces perfect layout alignments, fits screen bounds on all viewports,
+   fixes scroll overflows, overrides broken layout widths, and optimizes touch targets.
+   ========================================================================== */
+
+/* General Fixes to prevent horizontal overflows globally */
+html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
+/* Force flex-wrap on grids/flex layouts that overflow on mobile */
+.container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   Viewport Specific Media Queries
+   ========================================================================== */
+
+/* ─── 1. TABLET & SMALL LAPTOPS (max-width: 1024px) ─── */
+@media (max-width: 1024px) {
+    /* Hero section alignments */
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+        text-align: center !important;
+        padding-top: 6rem !important;
+        padding-bottom: 4rem !important;
+    }
+    
+    .hero-content {
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .hero-image-wrapper {
+        justify-content: center !important;
+        margin-top: 1rem !important;
+    }
+
+    /* Grids & columns general overrides */
+    .grid-3-col, .grid-4-col {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Quick View & Quiz Modal containers responsiveness */
+    .modal-container {
+        width: 95% !important;
+        max-width: 95% !important;
+        margin: 1.5rem auto !important;
+        height: auto !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        border-radius: 20px !important;
+    }
+
+    .modal-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        padding: 1.5rem !important;
+    }
+}
+
+/* ─── 2. LANDSCAPE MOBILE & PHONES (max-width: 768px) ─── */
+@media (max-width: 768px) {
+    /* Header & Mobile Menu fits */
+    .main-header {
+        padding: 0.75rem 0 !important;
+    }
+
+    .nav-cta {
+        display: flex !important;
+        gap: 0.75rem !important;
+        align-items: center !important;
+    }
+
+    .btn-nav {
+        display: none !important; /* Hide secondary shop now in header on smaller viewports */
+    }
+
+    /* General paddings reduction */
+    section {
+        padding: 4rem 0 !important;
+    }
+
+    /* Grids to single column */
+    .grid-2-col, .grid-3-col, .grid-4-col, .products-grid, .why-us-grid, .ritual-grid, .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Skincare Bag (Cart Drawer) Mobile optimizations */
+    #cart-drawer {
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+    }
+
+    .cart-item {
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    .cart-item-image {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    /* Quiz Modal updates */
+    .quiz-modal-container {
+        padding: 1.25rem !important;
+    }
+
+    .quiz-options {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Fix image displays in quick view modal */
+    .modal-image-wrapper {
+        height: 250px !important;
+        max-height: 250px !important;
+    }
+
+    .modal-image-wrapper img {
+        object-fit: contain !important;
+    }
+}
+
+/* ─── 3. PORTRAIT MOBILE PHONES (max-width: 480px) ─── */
+@media (max-width: 480px) {
+    /* Typography scale down for mobile viewports */
+    h1, .hero-title {
+        font-size: 2.25rem !important;
+        line-height: 1.2 !important;
+    }
+
+    h2, .section-title {
+        font-size: 1.75rem !important;
+        line-height: 1.25 !important;
+    }
+
+    h3, .card-title {
+        font-size: 1.25rem !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Adjust CTA actions stacked on mobile */
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 1rem !important;
+    }
+
+    .hero-actions .btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    /* "Your Skincare Bag" Section Alignment fixes */
+    .cart-item {
+        grid-template-columns: 70px 1fr !important;
+        position: relative !important;
+        align-items: flex-start !important;
+    }
+
+    .cart-item-details {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.35rem !important;
+    }
+
+    .cart-item-meta {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+    }
+
+    .cart-item-quantity {
+        margin-top: 0.25rem !important;
+    }
+
+    /* Remove item button absolute positioning for clean spacing on mobile */
+    .cart-item-remove {
+        position: absolute !important;
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+    }
+
+    /* Order / Checkout section fixed bottom buttons alignment */
+    .cart-drawer-footer {
+        padding: 1.25rem !important;
+    }
+
+    .checkout-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+
+    .order-btn {
+        width: 100% !important;
+        padding: 1rem !important;
+        font-size: 0.95rem !important;
+        justify-content: center !important;
+    }
+
+    /* Instagram grid scaling */
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Footer linkages stacking */
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        text-align: center !important;
+    }
+
+    .footer-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+/* ─── 4. VERY SMALL PHONES (max-width: 360px) ─── */
+@media (max-width: 360px) {
+    /* Extreme viewport adjustments */
+    h1, .hero-title {
+        font-size: 1.85rem !important;
+    }
+
+    h2, .section-title {
+        font-size: 1.5rem !important;
+    }
+
+    /* Reduce general container gaps */
+    .container {
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+    }
+
+    .btn {
+        padding: 0.75rem 1.25rem !important;
+        font-size: 0.85rem !important;
+    }
+}

@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Page & Section Transitions — Self-Contained Premium Module
+   Namespace: .pt-* (page-transition)
+   Does NOT modify existing logic; enhances presentation layer with GPU-acceleration
+   ========================================================================== */
+
+:root {
+    --pt-sage: #849B89;
+    --pt-sage-light: #F4F6F4;
+    --pt-gold: #D4AF37;
+    --pt-gold-light: #F9F5EB;
+    --pt-terracotta: #C87A53;
+    --pt-charcoal: #2C302E;
+    --pt-transition-premium: cubic-bezier(0.76, 0, 0.24, 1);
+    --pt-transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   1. Cart Drawer 3D Perspective Scale-Back
+   ========================================================================== */
+body {
+    background-color: #121413; /* Elegant background color for 3D reveal context */
+    perspective: 1500px;
+    overflow-x: hidden;
+}
+
+/* Wrap main layouts to allow scale down without breaking absolute/fixed elements */
+.pt-perspective-container {
+    transition: transform 0.8s var(--pt-transition-premium), 
+                border-radius 0.8s var(--pt-transition-premium), 
+                box-shadow 0.8s var(--pt-transition-premium),
+                filter 0.8s var(--pt-transition-premium);
+    transform-origin: center right;
+    will-change: transform, border-radius, box-shadow, filter;
+    background: #FFFFFF;
+    position: relative;
+    z-index: 10;
+}
+
+/* Active scale back state when cart drawer is active */
+body.cart-active .pt-perspective-container {
+    transform: translateX(-5%) scale(0.94) rotateY(-4deg);
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    filter: brightness(0.8) contrast(1.05);
+    pointer-events: none; /* Disable clicks on page content when cart is open */
+}
+
+/* Ensure the header moves with the perspective container */
+body.cart-active header.main-header {
+    transform: translateX(-5%) scale(0.94) rotateY(-4deg);
+    transform-origin: center right;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    filter: brightness(0.8);
+    pointer-events: none;
+}
+
+header.main-header {
+    transition: transform 0.8s var(--pt-transition-premium), filter 0.8s var(--pt-transition-premium);
+    will-change: transform, filter;
+}
+
+/* Enhanced blur overlay */
+#cart-overlay {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(44, 48, 46, 0.4); /* Sage/charcoal blended transparency */
+    transition: opacity 0.8s var(--pt-transition-premium);
+    z-index: 998;
+}
+
+/* Cart Drawer custom styles */
+#cart-drawer {
+    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FCFAF7 100%);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+}
+
+
+/* ==========================================================================
+   2. Modal Morph-Open (Shared Element Transitions)
+   ========================================================================== */
+.pt-morph-element {
+    position: fixed;
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    z-index: 9990;
+    transition: all 0.75s var(--pt-transition-premium);
+    will-change: top, left, width, height, border-radius, opacity;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glossy highlight inside morph element */
+.pt-morph-element::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+    animation: ptMorphShimmer 0.75s var(--pt-transition-premium) forwards;
+}
+
+@keyframes ptMorphShimmer {
+    to {
+        left: 150%;
+    }
+}
+
+/* Overlay transitions */
+.modal-overlay {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(44, 48, 46, 0.5) !important;
+    transition: opacity 0.6s var(--pt-transition-premium) !important;
+    z-index: 9995 !important;
+}
+
+/* Smooth modal reveal when open */
+.modal-container {
+    transform: scale(0.92) translateY(30px);
+    opacity: 0;
+    transition: transform 0.6s var(--pt-transition-premium), opacity 0.6s var(--pt-transition-premium) !important;
+    will-change: transform, opacity;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Subtly scale back the main site when product details modal is open */
+body.modal-active .pt-perspective-container {
+    transform: scale(0.96);
+    filter: brightness(0.9) blur(3px);
+    pointer-events: none;
+}
+body.modal-active header.main-header {
+    transform: scale(0.96);
+    filter: brightness(0.9) blur(3px);
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   3. Skeleton Loading Shimmers
+   ========================================================================== */
+.pt-skeleton-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid rgba(132, 155, 137, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+.pt-skeleton-media {
+    width: 100%;
+    height: 240px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #F3F1ED 25%, #E9E6E0 50%, #F3F1ED 75%);
+    background-size: 200% 100%;
+    animation: ptShimmer 1.5s infinite linear;
+}
+
+.pt-skeleton-line {
+    height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #F3F1ED 25%, #E9E6E0 50%, #F3F1ED 75%);
+    background-size: 200% 100%;
+    animation: ptShimmer 1.5s infinite linear;
+}
+
+.pt-skeleton-line.title {
+    width: 70%;
+    height: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.pt-skeleton-line.desc {
+    width: 90%;
+}
+
+.pt-skeleton-line.price {
+    width: 35%;
+    height: 18px;
+}
+
+.pt-skeleton-line.btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 30px;
+    margin-top: 1rem;
+}
+
+@keyframes ptShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+
+/* ==========================================================================
+   4. Accessibility Settings
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .pt-perspective-container,
+    body.cart-active .pt-perspective-container,
+    body.cart-active header.main-header,
+    header.main-header,
+    .pt-morph-element,
+    .modal-overlay,
+    .modal-container,
+    .pt-skeleton-media,
+    .pt-skeleton-line {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        backdrop-filter: none !important;
+        filter: none !important;
+    }
+}
