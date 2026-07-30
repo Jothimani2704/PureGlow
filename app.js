@@ -342,19 +342,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
 
         // Add to Bag behavior inside modal
         const modalAddBtn = modalContent.querySelector('.btn-modal-add-to-cart');
         modalAddBtn.addEventListener('click', () => {
             modal.classList.remove('open');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
             addToCart(productId);
         });
     }
 
     function closeModal() {
         modal.classList.remove('open');
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     }
 
     quickViewButtons.forEach(btn => {
@@ -598,11 +601,13 @@ document.addEventListener('DOMContentLoaded', () => {
         resetQuiz();
         quizModal.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     }
 
     function closeQuiz() {
         quizModal.classList.remove('open');
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     }
 
     function resetQuiz() {
@@ -835,6 +840,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cartDrawerOverlay) {
             cartDrawerOverlay.classList.add('open');
             document.body.style.overflow = 'hidden'; // Stop main body scroll
+            document.documentElement.style.overflow = 'hidden';
         }
     }
 
@@ -846,7 +852,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isModalOpen = document.getElementById('product-modal').classList.contains('open');
             const isQuizOpen = document.getElementById('quiz-modal').classList.contains('open');
             if (!isModalOpen && !isQuizOpen) {
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
             }
         }
     }

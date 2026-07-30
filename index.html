@@ -1279,6 +1279,73 @@
         </div>
     </footer>
 
+    <!-- Aesthetic Floating WhatsApp Assistant -->
+    <div class="whatsapp-assistant-container" id="whatsapp-assistant-container">
+        <!-- Floating Greeting Tooltip Speech Bubble -->
+        <div class="assistant-tooltip" id="assistant-tooltip">
+            <span class="tooltip-close" id="tooltip-close-btn">&times;</span>
+            <div class="tooltip-text">Hi there! 🌿 Need personalized skincare advice?</div>
+        </div>
+
+        <!-- Floating Trigger Button -->
+        <button class="assistant-trigger" id="assistant-trigger-btn" aria-label="Open skincare chat helper">
+            <span class="online-indicator"></span>
+            <svg class="assistant-whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.892.527 3.662 1.442 5.176l-1.4 5.111 5.234-1.373A9.957 9.957 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.955 14.154c-.244.693-1.22 1.261-1.688 1.32-.468.058-1.077.102-3.176-.723-2.529-.993-4.122-3.571-4.248-3.74-.127-.168-1.037-1.38-1.037-2.632 0-1.252.651-1.866.883-2.112.233-.245.509-.307.679-.307.17 0 .34 0 .488.006.155.006.363-.058.567.438.209.509.714 1.74.776 1.866.062.127.104.275.02.443-.083.168-.125.275-.249.421-.125.146-.263.326-.375.438-.125.125-.255.263-.11.512.146.248.65 1.075 1.393 1.737.957.854 1.761 1.119 2.009 1.243.248.125.394.104.542-.062.149-.168.638-.744.807-1.001.168-.256.339-.214.572-.127.234.088 1.488.701 1.745.83.256.128.427.194.49.303.064.108.064.629-.18 1.322z"/>
+            </svg>
+        </button>
+
+        <!-- Consultant Chat Card -->
+        <div class="assistant-card" id="assistant-chat-card">
+            <!-- Header Section -->
+            <div class="assistant-card-header">
+                <div class="assistant-profile">
+                    <div class="assistant-avatar">
+                        <span class="avatar-online-dot"></span>
+                        🌿
+                    </div>
+                    <div class="assistant-profile-info">
+                        <span class="assistant-profile-name">PureGlow Guide</span>
+                        <span class="assistant-profile-status">Online • Botanical Consultant</span>
+                    </div>
+                </div>
+                <button class="assistant-card-close" id="assistant-card-close-btn" aria-label="Close chat helper">&times;</button>
+            </div>
+
+            <!-- Body Chat Bubbles -->
+            <div class="assistant-card-body">
+                <div class="assistant-chat-bubble system">
+                    Hi there! 🌿 I'm your PureGlow natural skincare assistant. 
+                    <br><br>
+                    How can I help you discover your perfect soap care match today?
+                </div>
+            </div>
+
+            <!-- Quick Tap Menu Options -->
+            <div class="assistant-card-footer">
+                <div class="assistant-quick-taps">
+                    <button class="quick-tap-btn" id="assistant-tap-quiz">
+                        <span>🔍 Find My Perfect Soap Match</span>
+                    </button>
+                    <button class="quick-tap-btn" id="assistant-tap-bulk">
+                        <span>📦 Bulk Wholesale Enquiry</span>
+                    </button>
+                    <button class="quick-tap-btn" id="assistant-tap-map">
+                        <span>📍 Store Directions & Hours</span>
+                    </button>
+                </div>
+                
+                <!-- Direct Connect WhatsApp Button -->
+                <button class="btn btn-primary btn-block btn-assistant-connect" id="assistant-direct-connect-btn" style="margin-top: 1rem;">
+                    <span>Direct WhatsApp Chat</span>
+                    <svg class="cart-whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-left: 6px; fill: currentColor;">
+                        <path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.892.527 3.662 1.442 5.176l-1.4 5.111 5.234-1.373A9.957 9.957 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.955 14.154c-.244.693-1.22 1.261-1.688 1.32-.468.058-1.077.102-3.176-.723-2.529-.993-4.122-3.571-4.248-3.74-.127-.168-1.037-1.38-1.037-2.632 0-1.252.651-1.866.883-2.112.233-.245.509-.307.679-.307.17 0 .34 0 .488.006.155.006.363-.058.567.438.209.509.714 1.74.776 1.866.062.127.104.275.02.443-.083.168-.125.275-.249.421-.125.146-.263.326-.375.438-.125.125-.255.263-.11.512.146.248.65 1.075 1.393 1.737.957.854 1.761 1.119 2.009 1.243.248.125.394.104.542-.062.149-.168.638-.744.807-1.001.168-.256.339-.214.572-.127.234.088 1.488.701 1.745.83.256.128.427.194.49.303.064.108.064.629-.18 1.322z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Premium Custom Lightbox Modal (For Product Quick View) -->
     <div class="modal-overlay" id="product-modal">
         <div class="modal-container">
@@ -1551,72 +1618,7 @@
         </div>
     </div>
 
-    <!-- Aesthetic Floating WhatsApp Assistant -->
-    <div class="whatsapp-assistant-container" id="whatsapp-assistant-container">
-        <!-- Floating Greeting Tooltip Speech Bubble -->
-        <div class="assistant-tooltip" id="assistant-tooltip">
-            <span class="tooltip-close" id="tooltip-close-btn">&times;</span>
-            <div class="tooltip-text">Hi there! 🌿 Need personalized skincare advice?</div>
-        </div>
 
-        <!-- Floating Trigger Button -->
-        <button class="assistant-trigger" id="assistant-trigger-btn" aria-label="Open skincare chat helper">
-            <span class="online-indicator"></span>
-            <svg class="assistant-whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.892.527 3.662 1.442 5.176l-1.4 5.111 5.234-1.373A9.957 9.957 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.955 14.154c-.244.693-1.22 1.261-1.688 1.32-.468.058-1.077.102-3.176-.723-2.529-.993-4.122-3.571-4.248-3.74-.127-.168-1.037-1.38-1.037-2.632 0-1.252.651-1.866.883-2.112.233-.245.509-.307.679-.307.17 0 .34 0 .488.006.155.006.363-.058.567.438.209.509.714 1.74.776 1.866.062.127.104.275.02.443-.083.168-.125.275-.249.421-.125.146-.263.326-.375.438-.125.125-.255.263-.11.512.146.248.65 1.075 1.393 1.737.957.854 1.761 1.119 2.009 1.243.248.125.394.104.542-.062.149-.168.638-.744.807-1.001.168-.256.339-.214.572-.127.234.088 1.488.701 1.745.83.256.128.427.194.49.303.064.108.064.629-.18 1.322z"/>
-            </svg>
-        </button>
-
-        <!-- Consultant Chat Card -->
-        <div class="assistant-card" id="assistant-chat-card">
-            <!-- Header Section -->
-            <div class="assistant-card-header">
-                <div class="assistant-profile">
-                    <div class="assistant-avatar">
-                        <span class="avatar-online-dot"></span>
-                        🌿
-                    </div>
-                    <div class="assistant-profile-info">
-                        <span class="assistant-profile-name">PureGlow Guide</span>
-                        <span class="assistant-profile-status">Online • Botanical Consultant</span>
-                    </div>
-                </div>
-                <button class="assistant-card-close" id="assistant-card-close-btn" aria-label="Close chat helper">&times;</button>
-            </div>
-
-            <!-- Body Chat Bubbles -->
-            <div class="assistant-card-body">
-                <div class="assistant-chat-bubble system">
-                    Hi there! 🌿 I'm your PureGlow natural skincare assistant. 
-                    <br><br>
-                    How can I help you discover your perfect soap care match today?
-                </div>
-            </div>
-
-            <!-- Quick Tap Menu Options -->
-            <div class="assistant-card-footer">
-                <div class="assistant-quick-taps">
-                    <button class="quick-tap-btn" id="assistant-tap-quiz">
-                        <span>🔍 Find My Perfect Soap Match</span>
-                    </button>
-                    <button class="quick-tap-btn" id="assistant-tap-bulk">
-                        <span>📦 Bulk Wholesale Enquiry</span>
-                    </button>
-                    <button class="quick-tap-btn" id="assistant-tap-map">
-                        <span>📍 Store Directions & Hours</span>
-                    </button>
-                </div>
-                
-                <!-- Direct Connect WhatsApp Button -->
-                <button class="btn btn-primary btn-block btn-assistant-connect" id="assistant-direct-connect-btn" style="margin-top: 1rem;">
-                    <span>Direct WhatsApp Chat</span>
-                    <svg class="cart-whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-left: 6px; fill: currentColor;">
-                        <path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.892.527 3.662 1.442 5.176l-1.4 5.111 5.234-1.373A9.957 9.957 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.955 14.154c-.244.693-1.22 1.261-1.688 1.32-.468.058-1.077.102-3.176-.723-2.529-.993-4.122-3.571-4.248-3.74-.127-.168-1.037-1.38-1.037-2.632 0-1.252.651-1.866.883-2.112.233-.245.509-.307.679-.307.17 0 .34 0 .488.006.155.006.363-.058.567.438.209.509.714 1.74.776 1.866.062.127.104.275.02.443-.083.168-.125.275-.249.421-.125.146-.263.326-.375.438-.125.125-.255.263-.11.512.146.248.65 1.075 1.393 1.737.957.854 1.761 1.119 2.009 1.243.248.125.394.104.542-.062.149-.168.638-.744.807-1.001.168-.256.339-.214.572-.127.234.088 1.488.701 1.745.83.256.128.427.194.49.303.064.108.064.629-.18 1.322z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Script File -->
     <script src="app.js"></script>

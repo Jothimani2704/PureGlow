@@ -2435,6 +2435,15 @@ h1, h2, h3, h4, h5, h6 {
    Zone 3: .cart-checkout-bar   → flex-shrink:0, always visible at bottom
    ============================================================= */
 
+/* Prevent main page scrolling when overlays are active */
+html.cart-active,
+body.cart-active,
+html.modal-active,
+body.modal-active {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 /* Overlay backdrop */
 .cart-drawer-overlay {
     position: fixed;

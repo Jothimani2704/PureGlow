@@ -41,45 +41,48 @@
         // Wrap main
         wrapElement(main, wrapper);
 
-        // Monitor Cart Drawer opening by watching class mutations on the cart-drawer
-        const cartDrawer = document.getElementById('cart-drawer');
-        const cartOverlay = document.getElementById('cart-overlay');
+        // Monitor Cart Drawer opening by watching class mutations on the cart-drawer-overlay
+        const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
 
-        if (cartDrawer) {
+        if (cartDrawerOverlay) {
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.attributeName === 'class') {
-                        const isActive = cartDrawer.classList.contains('active');
+                        const isActive = cartDrawerOverlay.classList.contains('open');
                         if (isActive) {
                             document.body.classList.add('cart-active');
+                            document.documentElement.classList.add('cart-active');
                             ptState.isCartOpen = true;
                         } else {
                             document.body.classList.remove('cart-active');
+                            document.documentElement.classList.remove('cart-active');
                             ptState.isCartOpen = false;
                         }
                     }
                 });
             });
 
-            observer.observe(cartDrawer, { attributes: true });
+            observer.observe(cartDrawerOverlay, { attributes: true });
         }
 
         // Add backup click listeners on triggers for instant reactivity
         const cartTriggers = [
             document.getElementById('cart-icon-btn'),
-            document.getElementById('close-cart-btn'),
-            cartOverlay
+            document.getElementById('cart-drawer-close-btn'),
+            cartDrawerOverlay
         ];
 
         cartTriggers.forEach(trigger => {
             if (trigger) {
                 trigger.addEventListener('click', () => {
                     setTimeout(() => {
-                        const isActive = cartDrawer && cartDrawer.classList.contains('active');
+                        const isActive = cartDrawerOverlay && cartDrawerOverlay.classList.contains('open');
                         if (isActive) {
                             document.body.classList.add('cart-active');
+                            document.documentElement.classList.add('cart-active');
                         } else {
                             document.body.classList.remove('cart-active');
+                            document.documentElement.classList.remove('cart-active');
                         }
                     }, 50);
                 });
@@ -92,26 +95,32 @@
     // ────────────────────────────────────────────────────────────────────────
     function initModalMorph() {
         const productModal = document.getElementById('product-modal');
+        const quizModal = document.getElementById('quiz-modal');
         const modalContainer = productModal ? productModal.querySelector('.modal-container') : null;
         
         if (!productModal || !modalContainer) return;
 
-        // Monitor product-modal active state
+        // Monitor both product-modal and quiz-modal active states
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
-                    const isActive = productModal.classList.contains('active');
+                    const isProductOpen = productModal && productModal.classList.contains('open');
+                    const isQuizOpen = quizModal && quizModal.classList.contains('open');
+                    const isActive = isProductOpen || isQuizOpen;
                     if (isActive) {
                         document.body.classList.add('modal-active');
+                        document.documentElement.classList.add('modal-active');
                         ptState.isModalOpen = true;
                     } else {
                         document.body.classList.remove('modal-active');
+                        document.documentElement.classList.remove('modal-active');
                         ptState.isModalOpen = false;
                     }
                 }
             });
         });
-        observer.observe(productModal, { attributes: true });
+        if (productModal) observer.observe(productModal, { attributes: true });
+        if (quizModal) observer.observe(quizModal, { attributes: true });
 
         // Intercept clicks on Quick View buttons to execute morph
         document.body.addEventListener('click', function (e) {

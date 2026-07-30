@@ -20,8 +20,12 @@
    ========================================================================== */
 body {
     background-color: #121413; /* Elegant background color for 3D reveal context */
-    perspective: 1500px;
     overflow-x: hidden;
+}
+
+body.cart-active,
+body.modal-active {
+    perspective: 1500px;
 }
 
 /* Wrap main layouts to allow scale down without breaking absolute/fixed elements */
@@ -139,6 +143,7 @@ header.main-header {
     will-change: transform, opacity;
 }
 
+.modal-overlay.open .modal-container,
 .modal-overlay.active .modal-container {
     transform: scale(1) translateY(0);
     opacity: 1;
