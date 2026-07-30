@@ -8,6 +8,9 @@
     <meta name="keywords" content="natural soaps, handmade soaps, organic skincare, pureglow, herbal soaps, wellness, luxury skincare, aloe vera soap, charcoal soap">
     <meta name="author" content="PureGlow Soaps">
     
+    <!-- Favicon Brand Icon -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg?v=2">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +27,9 @@
     <!-- Spa-Theme Night Mode (standalone, no conflicts) -->
     <link rel="stylesheet" href="night-theme.css">
     <!-- Page & Section Transitions (standalone, no conflicts) -->
-    <link rel="stylesheet" href="page-transitions.css?v=6">
+    <link rel="stylesheet" href="page-transitions.css?v=7">
     <!-- Mobile Responsiveness (standalone, no conflicts) -->
-    <link rel="stylesheet" href="mobile-responsive.css?v=3">
+    <link rel="stylesheet" href="mobile-responsive.css?v=4">
 </head>
 <body>
 
@@ -34,8 +37,11 @@
     <header class="main-header" id="header">
         <div class="container nav-container">
             <a href="#home" class="logo" id="brand-logo">
-                <span class="logo-text">Pure<span class="highlight">Glow</span></span>
-                <span class="logo-subtext">SOAPS</span>
+                <img src="assets/logo.jpg?v=2" alt="PureGlow Brand Logo" class="logo-icon">
+                <div class="logo-brand-info">
+                    <span class="logo-text">Pure<span class="highlight">Glow</span></span>
+                    <span class="logo-subtext">SOAPS</span>
+                </div>
             </a>
             
             <nav class="nav-links" id="nav-menu">
@@ -73,7 +79,12 @@
     <div class="mobile-nav-overlay" id="mobile-menu-overlay">
         <div class="mobile-nav-panel">
             <div class="mobile-nav-header">
-                <span class="logo-text">Pure<span class="highlight">Glow</span></span>
+                <div class="logo">
+                    <img src="assets/logo.jpg?v=2" alt="PureGlow Brand Logo" class="logo-icon">
+                    <div class="logo-brand-info">
+                        <span class="logo-text">Pure<span class="highlight">Glow</span></span>
+                    </div>
+                </div>
                 <button class="mobile-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
             </div>
             <nav class="mobile-menu">
@@ -1225,8 +1236,11 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="#home" class="logo">
-                    <span class="logo-text text-white">Pure<span class="highlight">Glow</span></span>
-                    <span class="logo-subtext text-white-muted">SOAPS</span>
+                    <img src="assets/logo.jpg?v=2" alt="PureGlow Brand Logo" class="logo-icon">
+                    <div class="logo-brand-info">
+                        <span class="logo-text text-white">Pure<span class="highlight">Glow</span></span>
+                        <span class="logo-subtext text-white-muted">SOAPS</span>
+                    </div>
                 </a>
                 <p class="footer-about">Crafting premium, organic, cold-pressed handmade skincare soaps using natural herbs and high-grade essential oils. Elevate your everyday cleansing ritual.</p>
                 <div class="footer-socials">
@@ -1631,6 +1645,6 @@
     <!-- Spa-Theme Night Mode Engine (standalone, no conflicts) -->
     <script src="night-theme.js"></script>
     <!-- Page & Section Transitions Engine (standalone, no conflicts) -->
-    <script src="page-transitions.js?v=6"></script>
+    <script src="page-transitions.js?v=7"></script>
 </body>
 </html>

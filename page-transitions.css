@@ -32,7 +32,6 @@ body {
                 box-shadow 0.8s var(--pt-transition-premium),
                 filter 0.8s var(--pt-transition-premium);
     transform-origin: center center;
-    will-change: transform, border-radius, box-shadow, filter;
     background-color: var(--color-cream-bg) !important;
     min-height: 100vh;
     position: relative;

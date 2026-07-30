@@ -153,6 +153,11 @@ html, body {
     .modal-image-wrapper img {
         object-fit: contain !important;
     }
+
+    /* Fixed height alignment for mobile testimonials track to prevent clipping user info */
+    .testimonials-track {
+        height: 480px !important;
+    }
 }
 
 /* ─── 3. PORTRAIT MOBILE PHONES (max-width: 480px) ─── */
@@ -256,6 +261,11 @@ html, body {
     .footer-links {
         justify-content: center !important;
         flex-wrap: wrap !important;
+    }
+
+    /* Extra height for portrait mobile viewports due to text wrapping */
+    .testimonials-track {
+        height: 520px !important;
     }
 }
 
