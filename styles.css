@@ -3127,6 +3127,8 @@ body.modal-active {
 
 .modal-content {
     padding: 2.5rem 3.5rem 2.5rem 2.5rem;
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
 }
 

@@ -469,12 +469,31 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = `<span>Sending Message...</span> <span class="badge-dot" style="margin-left:8px;"></span>`;
             btn.disabled = true;
 
+            // Get contact form values
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-msg').value;
+
+            // Construct structured message for WhatsApp
+            let waMsg = `🌿 *New Message from PureGlow Soaps Website*\n\n`;
+            waMsg += `*Full Name:* ${name}\n`;
+            waMsg += `*Email Address:* ${email}\n`;
+            waMsg += `*Subject:* ${subject}\n\n`;
+            waMsg += `*Message:*\n${message}`;
+
+            const encodedMsg = encodeURIComponent(waMsg);
+            const whatsappUrl = `https://wa.me/919585279836?text=${encodedMsg}`;
+
             setTimeout(() => {
+                // Open WhatsApp in new window/tab
+                window.open(whatsappUrl, '_blank');
+
                 contactSuccessOverlay.classList.add('show');
                 contactForm.reset();
                 btn.innerHTML = originalHTML;
                 btn.disabled = false;
-            }, 1200);
+            }, 1000);
         });
     }
 
