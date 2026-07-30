@@ -23,10 +23,7 @@ body {
     overflow-x: hidden;
 }
 
-body.cart-active,
-body.modal-active {
-    perspective: 1500px;
-}
+
 
 /* Wrap main layouts to allow scale down without breaking absolute/fixed elements */
 .pt-perspective-container {
@@ -34,31 +31,15 @@ body.modal-active {
                 border-radius 0.8s var(--pt-transition-premium), 
                 box-shadow 0.8s var(--pt-transition-premium),
                 filter 0.8s var(--pt-transition-premium);
-    transform-origin: center right;
+    transform-origin: center center;
     will-change: transform, border-radius, box-shadow, filter;
-    background: #FFFFFF;
+    background-color: var(--color-cream-bg) !important;
+    min-height: 100vh;
     position: relative;
     z-index: 10;
 }
 
-/* Active scale back state when cart drawer is active */
-body.cart-active .pt-perspective-container {
-    transform: translateX(-5%) scale(0.94) rotateY(-4deg);
-    border-radius: 20px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-    filter: brightness(0.8) contrast(1.05);
-    pointer-events: none; /* Disable clicks on page content when cart is open */
-}
 
-/* Ensure the header moves with the perspective container */
-body.cart-active header.main-header {
-    transform: translateX(-5%) scale(0.94) rotateY(-4deg);
-    transform-origin: center right;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    filter: brightness(0.8);
-    pointer-events: none;
-}
 
 header.main-header {
     transition: transform 0.8s var(--pt-transition-premium), filter 0.8s var(--pt-transition-premium);
@@ -149,15 +130,14 @@ header.main-header {
     opacity: 1;
 }
 
-/* Subtly scale back the main site when product details modal is open */
+/* Scale down background when modal is open to leave space on sides */
 body.modal-active .pt-perspective-container {
-    transform: scale(0.96);
-    filter: brightness(0.9) blur(3px);
+    transform: scale(0.95);
+    border-radius: 16px;
+    filter: brightness(0.85) blur(2px);
     pointer-events: none;
 }
 body.modal-active header.main-header {
-    transform: scale(0.96);
-    filter: brightness(0.9) blur(3px);
     pointer-events: none;
 }
 

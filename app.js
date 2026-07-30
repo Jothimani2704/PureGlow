@@ -341,6 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         modal.classList.add('open');
+        document.body.classList.add('modal-active');
+        document.documentElement.classList.add('modal-active');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
 
@@ -348,6 +350,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalAddBtn = modalContent.querySelector('.btn-modal-add-to-cart');
         modalAddBtn.addEventListener('click', () => {
             modal.classList.remove('open');
+            document.body.classList.remove('modal-active');
+            document.documentElement.classList.remove('modal-active');
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
             addToCart(productId);
@@ -356,6 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         modal.classList.remove('open');
+        document.body.classList.remove('modal-active');
+        document.documentElement.classList.remove('modal-active');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
     }
@@ -600,12 +606,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function openQuiz() {
         resetQuiz();
         quizModal.classList.add('open');
+        document.body.classList.add('modal-active');
+        document.documentElement.classList.add('modal-active');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
     }
 
     function closeQuiz() {
         quizModal.classList.remove('open');
+        document.body.classList.remove('modal-active');
+        document.documentElement.classList.remove('modal-active');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
     }
@@ -839,6 +849,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function openCart() {
         if (cartDrawerOverlay) {
             cartDrawerOverlay.classList.add('open');
+            document.body.classList.add('cart-active');
+            document.documentElement.classList.add('cart-active');
             document.body.style.overflow = 'hidden'; // Stop main body scroll
             document.documentElement.style.overflow = 'hidden';
         }
@@ -848,6 +860,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeCart() {
         if (cartDrawerOverlay) {
             cartDrawerOverlay.classList.remove('open');
+            document.body.classList.remove('cart-active');
+            document.documentElement.classList.remove('cart-active');
             // Only restore scroll if no other fullscreen overlay is active
             const isModalOpen = document.getElementById('product-modal').classList.contains('open');
             const isQuizOpen = document.getElementById('quiz-modal').classList.contains('open');
@@ -1201,7 +1215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         invoiceText += `Thank you! Please let me know the payment and delivery details.`;
 
         const encodedMsg = encodeURIComponent(invoiceText);
-        const whatsappUrl = `https://wa.me/919876543210?text=${encodedMsg}`;
+        const whatsappUrl = `https://wa.me/919585279836?text=${encodedMsg}`;
         window.open(whatsappUrl, '_blank');
     }
 
@@ -1337,7 +1351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         assistantDirectConnect.addEventListener('click', () => {
             const customQuery = `Hi PureGlow Soaps! 🌿 I am browsing your artisan collection and have a question about your natural handmade soaps.`;
             const encodedQuery = encodeURIComponent(customQuery);
-            const directUrl = `https://wa.me/919876543210?text=${encodedQuery}`;
+            const directUrl = `https://wa.me/919585279836?text=${encodedQuery}`;
             window.open(directUrl, '_blank');
         });
     }

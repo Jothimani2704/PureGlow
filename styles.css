@@ -622,7 +622,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-image {
     width: 100%;
-    max-width: 440px;
+    max-width: 520px;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-lg);
 }
@@ -651,12 +651,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .badge-eco {
     top: 15%;
-    left: -12%;
+    left: -5%;
 }
 
 .badge-glow {
     bottom: 20%;
-    right: -10%;
+    right: -2%;
 }
 
 /* Indicator */

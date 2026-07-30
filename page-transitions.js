@@ -38,56 +38,22 @@
         wrapper.className = 'pt-perspective-container';
         wrapper.id = 'pt-perspective-wrap';
 
-        // Wrap main
-        wrapElement(main, wrapper);
+        const header = document.getElementById('header');
+        const footer = document.querySelector('footer');
 
-        // Monitor Cart Drawer opening by watching class mutations on the cart-drawer-overlay
-        const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
-
-        if (cartDrawerOverlay) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.attributeName === 'class') {
-                        const isActive = cartDrawerOverlay.classList.contains('open');
-                        if (isActive) {
-                            document.body.classList.add('cart-active');
-                            document.documentElement.classList.add('cart-active');
-                            ptState.isCartOpen = true;
-                        } else {
-                            document.body.classList.remove('cart-active');
-                            document.documentElement.classList.remove('cart-active');
-                            ptState.isCartOpen = false;
-                        }
-                    }
-                });
-            });
-
-            observer.observe(cartDrawerOverlay, { attributes: true });
+        if (header) {
+            header.parentNode.insertBefore(wrapper, header);
+            wrapper.appendChild(header);
+        } else {
+            main.parentNode.insertBefore(wrapper, main);
         }
 
-        // Add backup click listeners on triggers for instant reactivity
-        const cartTriggers = [
-            document.getElementById('cart-icon-btn'),
-            document.getElementById('cart-drawer-close-btn'),
-            cartDrawerOverlay
-        ];
+        wrapper.appendChild(main);
 
-        cartTriggers.forEach(trigger => {
-            if (trigger) {
-                trigger.addEventListener('click', () => {
-                    setTimeout(() => {
-                        const isActive = cartDrawerOverlay && cartDrawerOverlay.classList.contains('open');
-                        if (isActive) {
-                            document.body.classList.add('cart-active');
-                            document.documentElement.classList.add('cart-active');
-                        } else {
-                            document.body.classList.remove('cart-active');
-                            document.documentElement.classList.remove('cart-active');
-                        }
-                    }, 50);
-                });
-            }
-        });
+        if (footer) {
+            wrapper.appendChild(footer);
+        }
+
     }
 
     // ────────────────────────────────────────────────────────────────────────
@@ -99,28 +65,6 @@
         const modalContainer = productModal ? productModal.querySelector('.modal-container') : null;
         
         if (!productModal || !modalContainer) return;
-
-        // Monitor both product-modal and quiz-modal active states
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    const isProductOpen = productModal && productModal.classList.contains('open');
-                    const isQuizOpen = quizModal && quizModal.classList.contains('open');
-                    const isActive = isProductOpen || isQuizOpen;
-                    if (isActive) {
-                        document.body.classList.add('modal-active');
-                        document.documentElement.classList.add('modal-active');
-                        ptState.isModalOpen = true;
-                    } else {
-                        document.body.classList.remove('modal-active');
-                        document.documentElement.classList.remove('modal-active');
-                        ptState.isModalOpen = false;
-                    }
-                }
-            });
-        });
-        if (productModal) observer.observe(productModal, { attributes: true });
-        if (quizModal) observer.observe(quizModal, { attributes: true });
 
         // Intercept clicks on Quick View buttons to execute morph
         document.body.addEventListener('click', function (e) {
