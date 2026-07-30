@@ -130,11 +130,8 @@ header.main-header {
     opacity: 1;
 }
 
-/* Scale down background when modal is open to leave space on sides */
+/* Prevent background interactions when modal is open, but keep display normal */
 body.modal-active .pt-perspective-container {
-    transform: scale(0.95);
-    border-radius: 16px;
-    filter: brightness(0.85) blur(2px);
     pointer-events: none;
 }
 body.modal-active header.main-header {
